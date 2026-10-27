@@ -10,6 +10,7 @@ import (
 
 	"github.com/git-town/git-town/v24/internal/browser/browserdomain"
 	"github.com/git-town/git-town/v24/internal/cli/print"
+	"github.com/git-town/git-town/v24/internal/config/configdomain"
 	"github.com/git-town/git-town/v24/internal/forge/forgedomain"
 	"github.com/git-town/git-town/v24/internal/forge/github"
 	"github.com/git-town/git-town/v24/internal/git/gitdomain"
@@ -31,6 +32,7 @@ type Connector struct {
 	Backend        subshelldomain.Querier
 	BrowserEnabled browserdomain.BrowserEnabled
 	Frontend       subshelldomain.Runner
+	Interactive    configdomain.Interactive
 	Log            print.Logger
 }
 
@@ -56,7 +58,7 @@ func (self Connector) CreateProposal(data forgedomain.CreateProposalArgs) error 
 	if hasBody {
 		args = append(args, "--body="+body.String())
 	}
-	if !hasTitle || !hasBody {
+	if (!hasTitle || !hasBody) && !self.Interactive.IsEnabled() {
 		args = append(args, "--fill")
 	}
 	if err := self.Frontend.Run("gh", args...); err != nil {

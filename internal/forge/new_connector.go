@@ -94,6 +94,7 @@ func NewConnector(args NewConnectorArgs) (Option[forgedomain.Connector], Option[
 					Backend:        args.Backend,
 					BrowserEnabled: args.BrowserEnabled,
 					Frontend:       args.Frontend,
+					Interactive:    args.Interactive,
 					Log:            args.Log,
 				},
 				Cache: forgedomain.APICache{},
@@ -140,6 +141,7 @@ type NewConnectorArgs struct {
 	GithubToken         Option[forgedomain.GithubToken]
 	GitlabConnectorType Option[forgedomain.GitlabConnectorType]
 	GitlabToken         Option[forgedomain.GitlabToken]
+	Interactive         configdomain.Interactive
 	Log                 print.Logger
 	RemoteURL           Option[giturl.Parts]
 }

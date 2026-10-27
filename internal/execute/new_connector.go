@@ -26,6 +26,7 @@ func (self OpenRepoResult) NewConnector(remoteURL Option[giturl.Parts]) (Option[
 		GithubToken:         config.GithubToken,
 		GitlabConnectorType: config.GitlabConnectorType,
 		GitlabToken:         config.GitlabToken,
+		Interactive:         config.Interactive,
 		Log:                 print.Logger{},
 		RemoteURL:           remoteURL,
 	})
