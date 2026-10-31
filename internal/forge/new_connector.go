@@ -93,8 +93,8 @@ func NewConnector(args NewConnectorArgs) (Option[forgedomain.Connector], Option[
 				Connector: gh.Connector{
 					Backend:        args.Backend,
 					BrowserEnabled: args.BrowserEnabled,
+					CanPrompt:      gh.DetectCanPrompt(args.Interactive),
 					Frontend:       args.Frontend,
-					Interactive:    args.Interactive,
 					Log:            args.Log,
 				},
 				Cache: forgedomain.APICache{},
