@@ -21,6 +21,7 @@ func (self OpenRepoResult) NewConnector(remoteURL Option[giturl.Parts]) (Option[
 		ForgeType:           config.ForgeType,
 		ForgejoToken:        config.ForgejoToken,
 		Frontend:            self.Frontend,
+		GhPromptDisabled:    self.GhPromptDisabled,
 		GiteaToken:          config.GiteaToken,
 		GithubConnectorType: config.GithubConnectorType,
 		GithubToken:         config.GithubToken,
@@ -29,5 +30,6 @@ func (self OpenRepoResult) NewConnector(remoteURL Option[giturl.Parts]) (Option[
 		Interactive:         config.Interactive,
 		Log:                 print.Logger{},
 		RemoteURL:           remoteURL,
+		StdioIsTerminal:     self.StdioIsTerminal,
 	})
 }

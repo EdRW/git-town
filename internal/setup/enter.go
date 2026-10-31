@@ -908,6 +908,7 @@ func testForgeAuth(args testForgeAuthArgs) (configdomain.ProgramFlow, dialogdoma
 		ForgeType:           Some(detectedForgeType.ForgeType()),
 		ForgejoToken:        args.forgejoToken,
 		Frontend:            args.backend,
+		GhPromptDisabled:    true, // this connector only verifies credentials, gh never needs to prompt
 		GiteaToken:          args.giteaToken,
 		GithubConnectorType: args.githubConnectorType,
 		GithubToken:         args.githubToken,
@@ -916,6 +917,7 @@ func testForgeAuth(args testForgeAuthArgs) (configdomain.ProgramFlow, dialogdoma
 		Interactive:         args.interactive,
 		Log:                 print.Logger{},
 		RemoteURL:           args.devURL,
+		StdioIsTerminal:     false, // this connector only verifies credentials, gh never needs to prompt
 	})
 	if err != nil {
 		return configdomain.ProgramFlowExit, false, err
